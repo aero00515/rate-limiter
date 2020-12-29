@@ -57,6 +57,9 @@ jspm_packages/
 # dotenv environment variables file
 *.env
 
+# FIXME: This should be ignored, only used for demo usage
+!.production.env
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache

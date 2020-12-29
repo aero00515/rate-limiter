@@ -9,6 +9,7 @@
     "postbuild": "cp src/service/rate-limiter/adapter/*.lua dist/service/rate-limiter/adapter/",
     "build:prod": "tsc -p tsconfig.production.json",
     "start": "export NODE_ENV=production && node dist/main.js",
+    "start-from-zero": "npm i && npm run build:prod && npm run postbuild && docker-compose up",
     "lint": "eslint --debug 'src/**/*'",
     "test": "jest --coverage"
   },
@@ -23,7 +24,6 @@
   },
   "homepage": "https://github.com/aero00515/rate-limiter",
   "dependencies": {
-    "@types/ioredis": "^4.17.10",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -36,6 +36,7 @@
     "@types/express": "^4.17.9",
     "@types/jest": "^26.0.19",
     "@types/node": "^14.14.16",
+    "@types/ioredis": "^4.17.10",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
     "@typescript-eslint/parser": "^4.11.0",
     "eslint": "^7.16.0",

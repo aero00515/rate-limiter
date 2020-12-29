@@ -6,7 +6,9 @@ const testRoute = async (
   req: express.Request,
   res: express.Response
 ): Promise<express.Response<number | string>> => {
-  const adapter = rateLimiterService.adapter.redisAdapter();
+  const adapter = rateLimiterService.adapter.redisAdapter({
+    host: process.env.REDIS_HOST || '127.0.0.1',
+  });
   const rateLimiter = rateLimiterService.rateLimiter(adapter);
   await rateLimiter.addCount(req.ip);
   const isUnderRateLimit = await rateLimiter.isIpUnderLimit(req.ip);

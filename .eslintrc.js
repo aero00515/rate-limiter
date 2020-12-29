@@ -11,6 +11,7 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   plugins: ['prettier', '@typescript-eslint'],
+  ignorePatterns: ['*.lua'],
   // add your custom rules here
   rules: {},
 };

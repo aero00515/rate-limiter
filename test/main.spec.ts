@@ -1,6 +1,7 @@
 describe('Main application test', () => {
   let mockDisable: jest.FunctionLike;
   let mockUse: jest.FunctionLike;
+  let mockSet: jest.FunctionLike;
   let mockListen: jest.FunctionLike;
 
   beforeEach(() => {
@@ -10,6 +11,7 @@ describe('Main application test', () => {
 
     mockDisable = jest.fn();
     mockUse = jest.fn();
+    mockSet = jest.fn();
     mockListen = jest.fn((port, cb) => {
       cb();
       return {
@@ -21,6 +23,7 @@ describe('Main application test', () => {
     const mockExpress = jest.fn(() => ({
       disable: mockDisable,
       use: mockUse,
+      set: mockSet,
       listen: mockListen,
     }));
 
@@ -28,6 +31,10 @@ describe('Main application test', () => {
   });
 
   it('should be empty node port', () => {
+    jest.mock('../src/router', () => ({
+      rateLimitRouter: jest.fn(),
+    }));
+
     require('../src/main');
 
     expect(mockDisable).toBeCalledTimes(1);

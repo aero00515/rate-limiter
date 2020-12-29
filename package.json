@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "export NODE_ENV=development && nodemon --watch \"src/**\" --ext \"ts,json\" --ignore \"test/**/*.spec.ts\" --exec \"ts-node src/main.ts\"",
     "build": "tsc -p tsconfig.json",
+    "postbuild": "cp src/service/rate-limiter/adapter/*.lua dist/service/rate-limiter/adapter/",
     "build:prod": "tsc -p tsconfig.production.json",
     "start": "export NODE_ENV=production && node dist/main.js",
     "lint": "eslint --debug 'src/**/*'",
@@ -22,10 +23,12 @@
   },
   "homepage": "https://github.com/aero00515/rate-limiter",
   "dependencies": {
+    "@types/ioredis": "^4.17.10",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "http-status-codes": "^2.1.4"
+    "http-status-codes": "^2.1.4",
+    "ioredis": "^4.19.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
